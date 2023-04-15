@@ -8,17 +8,17 @@
         /// <summary>
         /// Customer First Name.
         /// </summary>
-        public string FirstName { get; set; }
+        public string? FirstName { get; set; }
 
         /// <summary>
         /// Customer Last Name.
         /// </summary>
-        public string LastName { get; set; }
+        public string? LastName { get; set; }
 
         /// <summary>
         /// Customer Policy Number e.g. XX-123456.
         /// </summary>
-        public string PolicyNumber { get; set; }
+        public string? PolicyNumber { get; set; }
 
         /// <summary>
         /// Customer Date of Birth e.g. 2000-12-31.
@@ -28,6 +28,6 @@
         /// <summary>
         /// Customer Email.
         /// </summary>
-        public string Email { get; set; }
+        public string? Email { get; set; }
     }
 }

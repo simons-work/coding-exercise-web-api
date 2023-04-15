@@ -7,7 +7,7 @@ namespace Web.Api.Core.Tests
     [TestClass]
     public class CustomerValidatorTests
     {
-        private CustomerDtoValidator sut;
+        private CustomerDtoValidator? sut;
 
         [TestInitialize]
         public void Setup()
