@@ -18,16 +18,16 @@ namespace Web.Api.Core.Services
         /// Register (/create) new customer.
         /// </summary>
         /// <param name="customerDto">New customer details.</param>
-        /// <returns>-1 if customer was already registered at that email address if specified, otherwise the customerId of the new customer registration</returns>
-        /// <remarks>It is unlikely but possible for two or more people to share the same name and birthdate but assuming
+        /// <returns>null if customer was already registered at that email address if specified, otherwise the customerId of the new customer registration</returns>
+        /// <remarks>It's possible for two or more people to share the same name and birthdate but assuming
         /// email address would be expected to be globally unique so if customer already exists then a new one is not created so that correct 400 status can be returned by the Web API layer</remarks>
-        public async Task<int> CreateAsync(CustomerDto customerDto)
+        public async Task<CustomerResponseDto?> CreateAsync(CustomerDto customerDto)
         {
             var customerEntity = customerDto.Adapt<CustomerEntity>();
 
             if (await CustomerExists(customerEntity))
             {
-                return -1;
+                return null;
             }
 
             await _customerRepository.CreateAsync(customerEntity);
@@ -36,7 +36,7 @@ namespace Web.Api.Core.Services
                 throw new ApplicationException("CustomerService.SaveChanges() unexpected result. The number of state entries written to the database was zero");
             }
 
-            return customerEntity.Id;
+            return new CustomerResponseDto { Id = customerEntity.Id };
         }
 
         private async Task<bool> CustomerExists(CustomerEntity customerEntity)

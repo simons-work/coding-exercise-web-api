@@ -27,9 +27,9 @@ namespace Web.Api.Controllers
         {
             try
             {
-                var customerId = await _customerService.CreateAsync(customerDto);
-                return customerId > 0 ?
-                    Ok(new { CustomerId = customerId }) :
+                var customerResponseDto = await _customerService.CreateAsync(customerDto);
+                return customerResponseDto is not null ?
+                    Ok(customerResponseDto) :
                     BadRequest($"Cannot register as customer already exists with email '{customerDto.Email}'");
             }
             catch (Exception ex)
