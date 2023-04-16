@@ -7,11 +7,11 @@ namespace Web.Api.Core.Services
 {
     public class CustomerService : ICustomerService
     {
-        private readonly ICustomerRepository customerRepository;
+        private readonly ICustomerRepository _customerRepository;
 
         public CustomerService(ICustomerRepository customerRepository)
         {
-            this.customerRepository = customerRepository;
+            this._customerRepository = customerRepository;
         }
 
         /// <summary>
@@ -30,8 +30,8 @@ namespace Web.Api.Core.Services
                 return -1;
             }
 
-            await customerRepository.CreateAsync(customerEntity);
-            if (!await customerRepository.SaveChangesAsync())
+            await _customerRepository.CreateAsync(customerEntity);
+            if (!await _customerRepository.SaveChangesAsync())
             {
                 throw new ApplicationException("CustomerService.SaveChanges() unexpected result. The number of state entries written to the database was zero");
             }
@@ -41,7 +41,7 @@ namespace Web.Api.Core.Services
 
         private async Task<bool> CustomerExists(CustomerEntity customerEntity)
         {
-            var existingCustomer = customerEntity.Email is not null ? await customerRepository.GetCustomerByEmailAsync(customerEntity.Email) : null;
+            var existingCustomer = customerEntity.Email is not null ? await _customerRepository.GetCustomerByEmailAsync(customerEntity.Email) : null;
             return existingCustomer is not null;
         }
     }

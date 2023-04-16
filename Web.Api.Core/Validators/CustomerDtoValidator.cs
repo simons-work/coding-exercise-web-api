@@ -30,7 +30,7 @@ namespace Web.Api.Core.Validators
                 .WithMessage("'{PropertyName}' indicates user is not aged 18 or over.");
         }
 
-        private static bool HasCorrectSuffix(string value, params string[] suffixes)
+        private static bool HasCorrectSuffix(string? value, params string[] suffixes)
         {
             return suffixes.Any(suffix => value?.EndsWith(suffix, StringComparison.CurrentCultureIgnoreCase) ?? false);
         }

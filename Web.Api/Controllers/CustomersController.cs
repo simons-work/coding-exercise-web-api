@@ -8,10 +8,13 @@ namespace Web.Api.Controllers
     [Route("api/[controller]")]
     public class CustomersController : ControllerBase
     {
+        private readonly ILogger<CustomersController> _logger;
+        private readonly ICustomerService _customerService;
+
         public CustomersController(ILogger<CustomersController> logger, ICustomerService customerService)
         {
-            this.logger = logger;
-            this.customerService = customerService;
+            this._logger = logger;
+            this._customerService = customerService;
         }
 
         /// <summary>
@@ -24,19 +27,16 @@ namespace Web.Api.Controllers
         {
             try
             {
-                var customerId = await customerService.CreateAsync(customerDto);
+                var customerId = await _customerService.CreateAsync(customerDto);
                 return customerId > 0 ?
                     Ok(new { CustomerId = customerId }) :
-                    BadRequest($"Cannot register as customer already exists with email '{customerDto.Email}'") as ActionResult;
+                    BadRequest($"Cannot register as customer already exists with email '{customerDto.Email}'");
             }
             catch (Exception ex)
             {
-                logger.LogError("CustomerController.Create() exception:", ex);
+                _logger.LogError("CustomerController.Create() exception: {0}", ex);
                 throw;
             }
         }
-
-        private readonly ILogger<CustomersController> logger;
-        private readonly ICustomerService customerService;
     }
 }
