@@ -28,11 +28,11 @@ chars. The email address should end in either ‘.com’ or ‘.co.uk’.
 
 ## Installation notes ##
 
-If you used git clone to download the source code, then it definitely builds ok  in Visual Studio 2019 Community Edition so hopefully will be ok in other version
+If you used git clone to download the source code, then it definitely builds ok  in Visual Studio 2022 Community Edition so hopefully will be ok in other versions or Rider.
 
 To create the local database where it saves the new customer details, double click on the top level folder file: CreateLocalDatabase.bat
 
-It will tell you the name of the database and where it plans to install it ... hopefully you have a local instance (localdb)\\MSSQLLocalDB
+It will tell you the name of the database and where it plans to install it ... hopefully you have a local instance (localdb)\\MSSQLLocalDB.
 
 ## Usage notes ##
 
@@ -41,7 +41,7 @@ When you Debug the solution, it should open a Swagger UI page where you can exer
 Can also use POSTMAN if you prefer:
 
 ```
-POST https://localhost:44349/api/customers
+POST https://localhost:7270/api/customers
 {
     "firstName": "Simon", 
     "lastName": "Evans",
@@ -78,7 +78,9 @@ You can use the built in model data annotations such as Required, Length to impl
 
 I have tested that if the model submitted does not pass the validation rules, then you get a HTTP 400 error with the JSON array of model errors. Some people go with HTTP 422 I think as the model may be 'correct' in terms of properties submitted but just invalid in terms of validation.
 
-Likewise when the model is correct and the customer can be created, I just went with HTTP 200, but again some people use HTTP 201 Created. 
+Likewise when the model is correct and the customer can be created, I just went with HTTP 200, but again some people use HTTP 201 Created.
+
+Finally if exception occurs like if you rename the database in appsettings.json, then checked it returns http 500 and the controller does catch the exception to pass it to the ILogger.
 
 ### Areas for improvement ###
 
@@ -87,6 +89,4 @@ I treated the Age check in the most simplistic manner by just subtracting 18 yea
 I treated the Email check with a regular expression in the end. The FluentValidation library does offer a EmailAddress built in function but it only seems to enforce "a@b" type addresses. The requirements might also have been wrong, in that they said at least 4 alphanumerics followed by @, followed by least 2 alphanumerics but email addresses should be able to contain more than alphanumerics before the @ symbol e.g. dash, hyphen, period, etc so in the end i went with regular expression which allows any character except whitespace before an @ symbol following by at least two non whitespace characters. I didn't allow for leading or trailing whitespace in the emails too which probably needs to be improved.
 
 ### Non requirements (but maybe needed?) ###
-The requirements did not ask for this but you said in the interview, try to read in between the lines, so I added some business logic in the CustomerService class to perform a check to see if the customer  has already registered with the same email before and if so it does not create a new customer. This is detected in the CustomerController and returned as HTTP 400 Bad Request like any other validation problem.
-
-
+The requirements did not ask for this but when I was originally asked to do this a few years ago for an interview, they said try to read in between the lines, so I added some business logic in the CustomerService class to perform a check to see if the customer  has already registered with the same email before and if so it does not create a new customer. This is detected in the CustomerController and returned as HTTP 400 Bad Request like any other validation problem.
