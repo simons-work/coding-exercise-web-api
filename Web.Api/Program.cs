@@ -1,3 +1,4 @@
+using Web.Api.Core;
 using Web.Api.Infrastructure;
 
 namespace Web.Api
@@ -13,7 +14,9 @@ namespace Web.Api
                 .AddEndpointsApiExplorer()
                 .AddSwaggerGen()
                 .AddConnectionProvider(builder.Configuration)
-                .AddRepositories();
+                .AddRepositories()
+                .AddServices()
+                .AddFluentValidation();
 
             var app = builder.Build();
 

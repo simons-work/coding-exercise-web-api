@@ -10,7 +10,9 @@ namespace Web.Api.Infrastructure
     {
         public static IServiceCollection AddConnectionProvider(this IServiceCollection services, IConfiguration configuration)
         {
-            return services.AddDbContext<InsuranceDbContext>(cfg => { cfg.UseSqlServer(configuration.GetConnectionString("InsuranceDb")); });
+            return services.AddDbContext<InsuranceDbContext>(cfg => { 
+                cfg.UseSqlServer(configuration.GetConnectionString("InsuranceDb"), options => options.EnableRetryOnFailure());
+            });
         }
 
         public static IServiceCollection AddRepositories(this IServiceCollection services)
