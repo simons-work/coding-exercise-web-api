@@ -84,11 +84,13 @@ Finally if exception occurs like if you rename the database in appsettings.json,
 
 ### Areas for improvement ###
 
-Note I treated the fictious Age check requirement in the most simplistic manner by just subtracting 18 years from current date and doing date comparison but ran out of time to think about people born on Feb 29th in Leap years so didn't write any unit tests for that. As the age check is delegated to a function in the validator class, I did create an overload with the intention of allowing a set of unit tests to pass in different 'today dates' but ran out of time to write any such tests.
+Note I treated the  Age check requirement in the most simplistic manner by just subtracting 18 years from current date and doing date comparison but ran out of time to think about people born on Feb 29th in Leap years so didn't write any unit tests for that. As the age check is delegated to a function in the validator class, I did create an overload with the intention of allowing a set of unit tests to pass in different 'today dates' but ran out of time to write any such tests.
 
 I treated the Email check with a regular expression in the end. The FluentValidation library does offer a EmailAddress built in function but it only seems to enforce "a@b" type addresses. The requirements might also have been wrong, in that they said at least 4 alphanumerics followed by @, followed by least 2 alphanumerics but email addresses should be able to contain more than alphanumerics before the @ symbol e.g. dash, hyphen, period, etc so in the end i went with regular expression which allows any character except whitespace before an @ symbol following by at least two non whitespace characters. I didn't allow for leading or trailing whitespace in the emails too which probably needs to be improved.
 
 Probably need to revisit where I just blindly added nullable reference type operator to few properties in one or two dto's to get the nullable warning check to go away and perhaps default them to empty strings within a constructor or with individual property defaulters and remove the IsNotNull checks from the validation rules and unit tests
+
+Finally with a bit more time, could have added some tests for the service class with moq library to check a few of the paths through the method to make sure the right things were being called.
 
 ### Non requirements (but maybe needed?) ###
 The requirements did not ask for this but when I was originally asked to do this a few years ago for an interview, they said try to read in between the lines, so I added some business logic in the CustomerService class to perform a check to see if the customer  has already registered with the same email before and if so it does not create a new customer. This is detected in the CustomerController and returned as HTTP 400 Bad Request like any other validation problem. 
