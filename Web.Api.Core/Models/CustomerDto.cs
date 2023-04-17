@@ -8,26 +8,26 @@
         /// <summary>
         /// Customer First Name.
         /// </summary>
-        public string? FirstName { get; set; }
+        public string? FirstName { get; init; }
 
         /// <summary>
         /// Customer Last Name.
         /// </summary>
-        public string? LastName { get; set; }
+        public string? LastName { get; init; }
 
         /// <summary>
         /// Customer Policy Number e.g. XX-123456.
         /// </summary>
-        public string? PolicyNumber { get; set; }
+        public string? PolicyNumber { get; init; }
 
         /// <summary>
         /// Customer Date of Birth e.g. 2000-12-31.
         /// </summary>
-        public DateTime? DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; init; }
 
         /// <summary>
         /// Customer Email.
         /// </summary>
-        public string? Email { get; set; }
+        public string? Email { get; init; }
     }
 }

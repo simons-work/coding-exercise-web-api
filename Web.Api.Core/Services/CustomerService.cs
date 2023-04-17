@@ -21,13 +21,13 @@ namespace Web.Api.Core.Services
         /// <returns>null if customer was already registered at that email address if specified, otherwise the customerId of the new customer registration</returns>
         /// <remarks>It's possible for two or more people to share the same name and birthdate but assuming
         /// email address would be expected to be globally unique so if customer already exists then a new one is not created so that correct 400 status can be returned by the Web API layer</remarks>
-        public async Task<CustomerResponseDto?> CreateAsync(CustomerDto customerDto)
+        public async Task<ResponseBase> CreateAsync(CustomerDto customerDto)
         {
             var customerEntity = customerDto.Adapt<CustomerEntity>();
 
             if (await CustomerExists(customerEntity))
             {
-                return null;
+                return new ErrorResponseDto { Message = $"Cannot register as customer already exists with email '{customerDto.Email}'" };
             }
 
             await _customerRepository.CreateAsync(customerEntity);
@@ -36,7 +36,7 @@ namespace Web.Api.Core.Services
                 throw new ApplicationException("CustomerService.SaveChanges() unexpected result. The number of state entries written to the database was zero");
             }
 
-            return new CustomerResponseDto { Id = customerEntity.Id };
+            return new CustomerResponseDto { Id = customerEntity.Id, Success = true };
         }
 
         private async Task<bool> CustomerExists(CustomerEntity customerEntity)

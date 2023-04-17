@@ -3,7 +3,7 @@
     /// <summary>
     /// Customer response details.
     /// </summary>
-    public class CustomerResponseDto
+    public class CustomerResponseDto : ResponseBase
     {
         /// <summary>
         /// Customer Id.

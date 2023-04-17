@@ -4,6 +4,6 @@ namespace Web.Api.Core.Services
 {
     public interface ICustomerService
     {
-        Task<CustomerResponseDto?> CreateAsync(CustomerDto customerDto);
+        Task<ResponseBase> CreateAsync(CustomerDto customerDto);
     }
 }
