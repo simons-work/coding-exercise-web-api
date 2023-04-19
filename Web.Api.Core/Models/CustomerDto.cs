@@ -3,7 +3,7 @@
     /// <summary>
     /// Customer details.
     /// </summary>
-    public class CustomerDto
+    public record CustomerDto
     {
         /// <summary>
         /// Customer First Name.
