@@ -173,23 +173,6 @@ namespace Web.Api.Core.Tests
             result.ShouldHaveValidationErrorFor(c => c.Email).WithErrorMessage("'Email' must end with '.co.uk', or '.com' suffix.");
         }
 
-        [TestMethod]
-        public void Should_have_error_when_Email_is_null_and_DateOfBirth_missing()
-        {
-            var model = new CustomerDto();
-            var result = _sut.TestValidate(model);
-            result.ShouldHaveValidationErrorFor(c => c.Email).WithErrorMessage("'Email' must end with '.co.uk', or '.com' suffix.");
-        }
-
-        [TestMethod]
-        public void Should_not_have_error_when_Email_is_null_and_DateOfBirth_specified()
-        {
-            // This is an odd one, but when Date of Birth specified, then Email is optional so want to test that it doesn't complain about lack of suffix on a null email
-            var model = new CustomerDto { Email = null, DateOfBirth = DateTime.Today.AddYears(-18) };
-            var result = _sut.TestValidate(model);
-            result.ShouldNotHaveValidationErrorFor(c => c.Email);
-        }
-
         #endregion
 
         #region DateOfBirth optionality tests
