@@ -7,9 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Api.Core.Tests", "Web.A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Api.Core", "Web.Api.Core\Web.Api.Core.csproj", "{C9DB1444-CBCF-447A-A98C-074E238796B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Api.Infrastructure", "Web.Api.Infrastructure\Web.Api.Infrastructure.csproj", "{10057EE7-66B5-43CF-9F16-04DA0770C3F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Api.Infrastructure", "Web.Api.Infrastructure\Web.Api.Infrastructure.csproj", "{10057EE7-66B5-43CF-9F16-04DA0770C3F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Api", "Web.Api\Web.Api.csproj", "{52125CD8-D45B-43A9-8CE5-4D46EE45E207}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Api", "Web.Api\Web.Api.csproj", "{52125CD8-D45B-43A9-8CE5-4D46EE45E207}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3127849B-17D5-4EE4-80DB-2037434C107D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{CCD15923-220A-45F8-9BE4-38F81D54A34B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,6 +40,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B258D4DB-2B8C-4B93-82AB-DD833C4A1C53} = {CCD15923-220A-45F8-9BE4-38F81D54A34B}
+		{C9DB1444-CBCF-447A-A98C-074E238796B3} = {3127849B-17D5-4EE4-80DB-2037434C107D}
+		{10057EE7-66B5-43CF-9F16-04DA0770C3F3} = {3127849B-17D5-4EE4-80DB-2037434C107D}
+		{52125CD8-D45B-43A9-8CE5-4D46EE45E207} = {3127849B-17D5-4EE4-80DB-2037434C107D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F8357712-F6CF-4A35-ADB0-2516F70C4885}
