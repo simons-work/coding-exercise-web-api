@@ -28,7 +28,7 @@ namespace Web.Api.Core.Tests
         {
             var model = new CustomerDto();
             var result = _sut.TestValidate(model);
-            result.ShouldHaveValidationErrorFor(c => c.FirstName).WithErrorCode("NotNullValidator");
+            result.ShouldHaveValidationErrorFor(c => c.FirstName).WithErrorCode("NotEmptyValidator");
         }
 
         [TestMethod]
@@ -62,7 +62,7 @@ namespace Web.Api.Core.Tests
         {
             var model = new CustomerDto();
             var result = _sut.TestValidate(model);
-            result.ShouldHaveValidationErrorFor(c => c.LastName).WithErrorCode("NotNullValidator");
+            result.ShouldHaveValidationErrorFor(c => c.LastName).WithErrorCode("NotEmptyValidator");
         }
 
         [TestMethod]
@@ -98,7 +98,7 @@ namespace Web.Api.Core.Tests
         {
             var model = new CustomerDto();
             var result = _sut.TestValidate(model);
-            result.ShouldHaveValidationErrorFor(c => c.PolicyNumber).WithErrorCode("NotNullValidator");
+            result.ShouldHaveValidationErrorFor(c => c.PolicyNumber).WithErrorCode("NotEmptyValidator");
         }
 
         [TestMethod]

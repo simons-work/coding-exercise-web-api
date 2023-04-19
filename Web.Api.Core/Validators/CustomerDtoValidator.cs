@@ -8,13 +8,13 @@ namespace Web.Api.Core.Validators
         public CustomerDtoValidator()
         {
             RuleFor(x => x.FirstName)
-                .NotNull().Length(3, 50);
+                .NotEmpty().Length(3, 50);
 
             RuleFor(x => x.LastName)
-                .NotNull().Length(3, 50);
+                .NotEmpty().Length(3, 50);
 
             RuleFor(x => x.PolicyNumber)
-                .NotNull().Matches(@"^[A-Z][A-Z]-\d{6,6}$"); // 2 Uppercase letters followed by 6 digits only
+                .NotEmpty().Matches(@"^[A-Z][A-Z]-\d{6,6}$"); // 2 Uppercase letters followed by 6 digits only
 
             RuleFor(x => x.Email)
                 .NotNull().Unless(x => x.DateOfBirth != null)

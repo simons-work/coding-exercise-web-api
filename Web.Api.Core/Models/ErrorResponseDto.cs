@@ -8,6 +8,6 @@
         /// <summary>
         /// Error message.
         /// </summary>
-        public string? Message { get; set; } 
+        public string Message { get; set; } = string.Empty;
     }
 }

@@ -8,17 +8,17 @@
         /// <summary>
         /// Customer First Name.
         /// </summary>
-        public string? FirstName { get; init; }
+        public string FirstName { get; init; } = string.Empty;
 
         /// <summary>
         /// Customer Last Name.
         /// </summary>
-        public string? LastName { get; init; }
+        public string LastName { get; init; } = string.Empty;
 
         /// <summary>
         /// Customer Policy Number e.g. XX-123456.
         /// </summary>
-        public string? PolicyNumber { get; init; }
+        public string PolicyNumber { get; init; } = string.Empty;
 
         /// <summary>
         /// Customer Date of Birth e.g. 2000-12-31.
